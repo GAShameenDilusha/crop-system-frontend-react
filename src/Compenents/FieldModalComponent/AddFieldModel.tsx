@@ -17,7 +17,8 @@ const AddFieldModal = ({ isOpen, onClose }: AddFieldModalProps) => {
         Fieldname: '',
         fieldsize: 0,
         location: '',
-        images: ["", ""], // Array to hold image data in base64 format
+        image1: '',
+        image2: '',// Array to hold image data in base64 format
     });
 
     const handleAddField = () => {
@@ -34,6 +35,9 @@ const AddFieldModal = ({ isOpen, onClose }: AddFieldModalProps) => {
         dispatch(addField(payload));
         onClose();
     };
+
+
+
 
     const handleLocationSelect = (location: string) => {
         setFormData((prev) => ({ ...prev, location }));
