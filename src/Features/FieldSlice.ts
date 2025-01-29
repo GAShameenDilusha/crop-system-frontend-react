@@ -1,29 +1,40 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Field {
-    id: number;
-    name: string;
-    // Add other field properties as needed
-}
+import {createSlice} from "@reduxjs/toolkit";
 
-interface FieldState {
-    fields: Field[];
-}
 
-const initialState: FieldState = {
-    fields: []
-};
-
+const initialState={
+    fields:[]
+} ;
 const FieldSlice = createSlice({
-    name: "fieldSlice",
-    initialState: initialState,
-    reducers: {
-        addField: (state, action: PayloadAction<Field>) => {
-            state.fields.push(action.payload);
-            console.log(state.fields);
-        }
-    }
-});
+    name:"field",
+    initialState:initialState,
+    reducers:{
+        addField:(state,action)=>{
+            console.log('Action Payload:', action.payload);
+            state.fields.push(action.payload); // Immer handles immutability
+            console.log('Updated Fields ArrayS:', state.fields);
 
-export const { addField } = FieldSlice.actions;
+
+        },
+        updateField:(state,action)=>{
+            console.log('Action Payload:', action.payload);
+            const {fieldId,updatedField}=action.payload;
+            state.fields = state.fields.map(field =>
+                field.fieldId === fieldId ? { ...field, ...updatedField } : field
+            );
+        },
+        deleteField:(state,action)=>{
+
+           state.fields = state.fields.filter(field =>field.fieldId !== action.payload);
+        }
+
+    }
+
+})
+
+// Selector to get field by ID
+export const selectFieldById = (state, fieldId) => {
+    return state.field.fields.find(field => field.fieldId === fieldId);
+};
+export const {addField,updateField,deleteField} = FieldSlice.actions;
 export default FieldSlice.reducer;
