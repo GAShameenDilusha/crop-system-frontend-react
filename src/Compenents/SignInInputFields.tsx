@@ -1,21 +1,7 @@
-import React from 'react';
 
-interface Option {
-    value: string;
-    label: string;
-}
 
-interface SignInInputFieldsProps {
-    id: string;
-    type: string;
-    placeholder?: string;
-    icon?: string;
-    options?: Option[];
-    onChange: (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
-}
-
-export default function SignInInputFields(props: SignInInputFieldsProps) {
-    if (props.type === 'select' && props.options && props.options.length > 0) {
+export default function SignInInputFields(props) {
+    if (props.type === 'select' && props.options.length > 0) {
         return (
             <div className="mb-4">
                 <select
@@ -32,12 +18,13 @@ export default function SignInInputFields(props: SignInInputFieldsProps) {
                 </select>
             </div>
         );
+
     }
     return (
         <div className="relative mb-4">
-            <span className="absolute left-3 top-3 text-gray-500">
-                <i className={props.icon}></i>
-            </span>
+      <span className="absolute left-3 top-3 text-gray-500">
+        <i className={props.icon}></i>
+      </span>
             <input
                 id={props.id}
                 type={props.type}
@@ -48,4 +35,5 @@ export default function SignInInputFields(props: SignInInputFieldsProps) {
             />
         </div>
     );
+
 }
