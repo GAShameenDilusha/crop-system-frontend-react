@@ -9,12 +9,12 @@ import store from "./Store/Store.ts";
 import {MainLayout} from "./Compenents/MainLayout.tsx";
 import DashboardPage from "./Pages/DashboardPage.tsx";
 import FieldPage from "./Pages/FieldsPage.tsx";
-import CropsPage from "./Pages/CropPage.tsx";
+import CropsPage from "./Pages/CropsPage.tsx";
 import StaffPage from "./Pages/StaffPage.tsx";
 import LogsPage from "./Pages/LogsPage.tsx";
 import VehiclePage from "./Pages/VehiclePage.tsx";
 import EquipmentPage from "./Pages/EquipmentPage.tsx";
-import './App.css'
+
 
 function App() {
     const routes = createBrowserRouter(
