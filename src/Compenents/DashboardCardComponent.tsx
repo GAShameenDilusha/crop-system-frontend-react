@@ -1,9 +1,4 @@
-interface DashboardCardComponentProps {
-    title: string;
-    value: string | number;
-}
-
-export default function DashboardCardComponent({ title, value }: DashboardCardComponentProps) {
+export  default function DashboardCardComponent({ title, value }) {
     return (
         <div className="md:w-1/4 w-full px-4 mb-4">
             <div className="bg-white/15 border-none rounded-xl shadow-lg backdrop-blur-md p-6 transition transform duration-200 ease-in-out hover:bg-green-900/15 hover:-translate-y-2 hover:shadow-xl text-green-900 hover:text-white">
@@ -13,3 +8,4 @@ export default function DashboardCardComponent({ title, value }: DashboardCardCo
         </div>
     );
 }
+
