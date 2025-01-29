@@ -1,18 +1,8 @@
-interface Button {
-    type?: 'button' | 'submit' | 'reset';
-    className?: string;
-    onClick: () => void;
-    label: string;
-}
 
-interface SignInButtonGroupProps {
-    buttons: Button[];
-}
-
-export default function SignInButtonGroup({ buttons }: SignInButtonGroupProps) {
+export default function SignInButtonGroup(props) {
     return (
         <div className="flex justify-between space-x-4 mt-10">
-            {buttons.map((button, index) => (
+            {props.buttons.map((button, index) => (
                 <button
                     key={index}
                     type={button.type || 'button'}
@@ -25,5 +15,5 @@ export default function SignInButtonGroup({ buttons }: SignInButtonGroupProps) {
                 </button>
             ))}
         </div>
-    );
+    )
 }
