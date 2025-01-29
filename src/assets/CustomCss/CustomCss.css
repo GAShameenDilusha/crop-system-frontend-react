@@ -1,5 +1,5 @@
 .side-bar-cutome-css{
-    @apply flex items-center space-x-3 py-2 px-3 pb-4 rounded-md hover:bg-green-700 transition duration-300 ease-in-out;
+    @apply flex items-center space-x-3 py-2 px-3 pb-4 rounded-md hover:bg-white hover:text-black transition duration-300 ease-in-out;
 }
 .side-bar-icon{
     @apply text-lg pr-2
@@ -8,8 +8,44 @@
     @apply text-base font-bold leading-tight;
 }
 .field-input-css{
-    @apply w-full px-4 py-2  rounded-lg focus:ring focus:ring-gray-100
+    @apply w-full px-4 py-2  rounded-lg focus:ring-2 focus:ring-green-300 focus:outline-none
 }
 .field-label{
     @apply text-base font-bold leading-tight text-emerald-700 transition duration-300 ease-in-out;
+}
+.card-custom{
+    @apply w-full max-w-[300px] rounded-xl bg-gradient-to-br from-white/25 to-white/10 backdrop-blur-md shadow-lg p-2 text-gray-800 transition transform duration-300 hover:-translate-y-2 hover:shadow-xl
+}
+.slider{
+    @apply relative w-full mx-auto
+}
+
+.card-content{
+    @apply p-[20px]
+}
+.slider button{
+    @apply bg-yellow-200/50 text-white p-2 rounded-2xl shadow-md w-10 h-10
+
+}
+.field-info h4{
+    @apply m-0 text-[20px] font-bold text-green-800 font-itim
+}
+.field-info p{
+    @apply m-1  text-green-600  text-[16px] leading-tight;
+}
+.modal-btn{
+    @apply bg-gradient-to-b from-[#fcfcfdff] to-[#4472C4] hover:bg-amber-400/60 text-emerald-700 font-semibold py-2 px-4 rounded-lg shadow-lg backdrop-blur-sm transition-all duration-300 ease-in-out transform hover:scale-105
+}
+.modal-background{
+    @apply bg-gradient-to-b from-white to-green-700 backdrop-blur-lg rounded-lg shadow-lg w-full max-w-3xl p-6 relative overflow-y-scroll md:max-h-[700px] max-h-screen
+}
+
+.view-mor-btn{
+    @apply  bg-gradient-to-b from-white to-green-700 text-green-800 py-2 px-4 rounded-lg hover:bg-green-300 hover:text-green-900 transition-all
+}
+.table-row{
+    @apply transition transform duration-300 relative z-10 hover:scale-[1.02] hover:shadow-lg hover:bg-white/80 cursor-pointer
+}
+.table-data{
+    @apply p-3 text-green-600 border-b border-white/20
 }
