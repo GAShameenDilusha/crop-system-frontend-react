@@ -8,7 +8,7 @@ export  function MainLayout() {
         setSidebarOpen(!isSidebarOpen);
     };
     return (
-        <section className='min-h-screen bg-gradient-to-b from-DashboardBackgroundColor to-white'>
+        <section className="min-h-screen bg-[url('src/assets/images/background.jpg')] bg-cover bg-center">
             <SidBarComponent isOpen={isSidebarOpen}  />
             <TopHeaderComponent toggleSidebar={toggleSidebar} />
             <Outlet/>
