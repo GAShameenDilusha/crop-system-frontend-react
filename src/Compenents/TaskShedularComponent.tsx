@@ -2,39 +2,26 @@ import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-interface Task {
-    date: string;
-    type: string;
-    description: string;
-}
-
-interface NewTask {
-    type: string;
-    description: string;
-}
-
-const TaskCalendar: React.FC = () => {
-    const [date, setDate] = useState<Date>(new Date());
-    const [tasks, setTasks] = useState<Task[]>([
+const TaskCalendar = () => {
+    const [date, setDate] = useState(new Date());
+    const [tasks, setTasks] = useState([
         { date: '2025-01-15', type: 'Planting', description: 'Plant tomatoes in Field A.' },
         { date: '2025-01-20', type: 'Harvesting', description: 'Harvest rice in Field B.' },
         { date: '2025-01-25', type: 'Maintenance', description: 'Maintain tractor.' },
     ]);
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-    const [newTask, setNewTask] = useState<NewTask>({ type: '', description: '' });
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [newTask, setNewTask] = useState({ type: '', description: '' });
 
-    const formattedTasks: { [key: string]: Task[] } = tasks.reduce((acc: { [key: string]: Task[] }, task: Task) => {
+    //in here categorize all the tasks by date , create a object that include list of task that have same date
+    const formattedTasks = tasks.reduce((acc, task) => {
         acc[task.date] = acc[task.date] || [];
         acc[task.date].push(task);
         return acc;
     }, {});
 
-    const handleDateClick = (value: Date | Date[]) => {
-        if (Array.isArray(value)) {
-            setDate(value[0]);
-        } else {
-            setDate(value);
-        }
+
+    const handleDateClick = (value) => {
+        setDate(value);
     };
 
     const handleOpenModal = () => {
@@ -57,14 +44,15 @@ const TaskCalendar: React.FC = () => {
     const selectedDateTasks = formattedTasks[date.toISOString().split('T')[0]] || [];
 
     return (
-        <div className="p-6 bg-white/30 rounded-lg shadow-lg md:max-w-3xl md:mt-0 mt-6 md:w-full w-3/4 border-2 backdrop-blur-lg">
+        <div className="p-6 bg-white/30  rounded-lg shadow-lg md:max-w-3xl md:mt-0 mt-6 md:w-full w-3/4 border-2  backdrop-blur-lg">
             <h2 className="text-3xl font-bold text-center mb-6 text-green-800 font-itim">
-                <i className="fa-solid fa-list-check text-2xl text-green-800 mr-5"></i> Task Calendar
+                <i className="fa-solid fa-list-check text-2xl text-green-800 mr-5 "></i> Task Calendar
             </h2>
             <div className="md:grid md:grid-cols-2 md:gap-8">
+                {/* Calendar Section */}
                 <div className="relative">
                     <Calendar
-                        className="bg-amber-50 rounded-lg"
+                        className="bg-amber-50 rounded-lg "
                         value={date}
                         onChange={handleDateClick}
                         tileContent={({ date }) => {
@@ -81,6 +69,8 @@ const TaskCalendar: React.FC = () => {
                         }}
                     />
                 </div>
+
+                {/* Task Details Section */}
                 <div className="bg-white p-4 rounded-lg shadow-md mt-6 md:mt-0">
                     <h3 className="text-lg font-semibold text-green-700">
                         🌟 Tasks for {date.toDateString()}:
@@ -88,10 +78,13 @@ const TaskCalendar: React.FC = () => {
                     {selectedDateTasks.length > 0 ? (
                         <ul className="mt-4 space-y-2">
                             {selectedDateTasks.map((task, index) => (
-                                <li key={index} className="flex items-center gap-3 p-3 bg-green-100 rounded-lg shadow">
-                                    <span className="bg-green-600 text-white text-sm px-2 py-1 rounded-full">
-                                        {task.type}
-                                    </span>
+                                <li
+                                    key={index}
+                                    className="flex items-center gap-3 p-3 bg-green-100 rounded-lg shadow"
+                                >
+                                <span className="bg-green-600 text-white text-sm px-2 py-1 rounded-full">
+                                    {task.type}
+                                </span>
                                     <p className="text-sm text-gray-700">{task.description}</p>
                                 </li>
                             ))}
@@ -107,6 +100,8 @@ const TaskCalendar: React.FC = () => {
                     </button>
                 </div>
             </div>
+
+            {/* Add Task Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-96">
@@ -116,7 +111,9 @@ const TaskCalendar: React.FC = () => {
                             <input
                                 type="text"
                                 value={newTask.type}
-                                onChange={(e) => setNewTask({ ...newTask, type: e.target.value })}
+                                onChange={(e) =>
+                                    setNewTask({ ...newTask, type: e.target.value })
+                                }
                                 className="w-full mt-2 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-green-500"
                                 placeholder="e.g., Planting"
                             />
@@ -125,13 +122,18 @@ const TaskCalendar: React.FC = () => {
                             <span className="text-gray-700">Description</span>
                             <textarea
                                 value={newTask.description}
-                                onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
+                                onChange={(e) =>
+                                    setNewTask({ ...newTask, description: e.target.value })
+                                }
                                 className="w-full mt-2 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-green-500"
                                 placeholder="e.g., Plant tomatoes in Field A"
                             ></textarea>
                         </label>
                         <div className="flex justify-end">
-                            <button onClick={handleCloseModal} className="px-4 py-2 text-gray-600 hover:text-gray-800">
+                            <button
+                                onClick={handleCloseModal}
+                                className="px-4 py-2 text-gray-600 hover:text-gray-800"
+                            >
                                 Cancel
                             </button>
                             <button
@@ -146,6 +148,7 @@ const TaskCalendar: React.FC = () => {
             )}
         </div>
     );
+
 };
 
 export default TaskCalendar;
