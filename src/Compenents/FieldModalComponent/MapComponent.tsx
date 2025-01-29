@@ -33,7 +33,7 @@ function MapComponent({ onLocationSelect }: { onLocationSelect: (location: strin
     return (
 
 
-        <div id="map" className="h-64 rounded-lg bg-gray-200"></div>
+            <div id="map" className="h-64 rounded-lg bg-gray-200"></div>
 
 
     );
