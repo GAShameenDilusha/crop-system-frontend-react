@@ -1,7 +1,7 @@
 import '../../assets/CustomCss/CustomCss.css';
 import MapComponent from "./MapComponent.tsx";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {Field} from "../../models/Field.ts";
 import {addField, updateField} from "../../Features/FieldSlice.ts";
 

@@ -14,6 +14,7 @@ import StaffPage from "./Pages/StaffPage.tsx";
 import LogsPage from "./Pages/LogsPage.tsx";
 import VehiclePage from "./Pages/VehiclePage.tsx";
 import EquipmentPage from "./Pages/EquipmentPage.tsx";
+import ProfilePage from "./Pages/Profile.tsx";
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
                     { path: "logs", element: <LogsPage /> },
                     { path: "vehicles", element: <VehiclePage /> },
                     { path: "equipment", element: <EquipmentPage /> },
+                    { path: "profile", element: <ProfilePage /> },
                 ],
             }
         ]
